@@ -1,0 +1,124 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+.modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.modal__legend {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  margin-bottom: 12px;
+ 
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+}
+
+.modal__content {
+  width: 498px;
+  position: relative;
+  background-color: white;
+  padding: 28px 28px 36px;
+  border-radius: 16px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  border: 1px solid #000000;
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+
+.modal__radio-button {
+  border: none;
+  padding: 0;
+  width: 173px;
+}
+
+.modal__submit {
+  width: 124px;
+  height: 36px;
+  border-radius: 5px;
+  border: 0 solid #000;
+  cursor: pointer;
+  margin-top: 32px;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.modal__submit:hover {
+  background-color: #00000080;
+}
+
+.modal__submit:disabled {
+  background-color: #00000080;
+}
+
+.modal__label_type_radio {
+  display: flex;
+  gap: 5px;
+  color: #00000080;
+  width: 44px;
+  height: 20px;
+  cursor: pointer;
+}
+.modal__label_type_radio:hover {
+  color: #000000;
+}
+.modal__label_type_radio:active {
+  color: #000000;
+}
+
+.modal__close {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  background-image: url("/src/assets/closebutton.svg");
+}

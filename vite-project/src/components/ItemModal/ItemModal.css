@@ -1,0 +1,48 @@
+.modal__footer {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__content_type_image {
+  padding: 0;
+}
+
+.modal__caption {
+  margin: 0 32px;
+  margin-bottom: 12px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  font-style: bold;
+}
+
+.modal__weather {
+  margin: 0 32px;
+  margin-bottom: 32px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  font-style: bold;
+}
+
+.modal__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 498px;
+  border-radius: 12px;
+}
