@@ -2,10 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f3f3f3;
-  max-width: 1360px;
-  padding: 171px 40px 0 0;
-  margin: 0;
+  padding: 0 40px 24px
 }
 
 .footer__text {
