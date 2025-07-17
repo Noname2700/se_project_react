@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+.cards {
+  padding-bottom: 171px;
+}
+
 .card__name {
   position: absolute;
   top: 15px;
@@ -26,5 +30,5 @@
 .card__image {
   width: 100%;
   border-radius: 16px;
-  border: solid #0000004d;
+  border: 1px solid #0000004d;
 }
