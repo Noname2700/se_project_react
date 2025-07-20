@@ -19,4 +19,4 @@ The user will have three choices to choose from whether it will be hot, warm, or
 This project is deployed on GitHub Pages:
 
 - You can open the GitHub website page for this project by clicking on the following link:
-[https://github.com/Noname2700/se_project_react.git]
+[https://noname2700.github.io/se_project_react/]
