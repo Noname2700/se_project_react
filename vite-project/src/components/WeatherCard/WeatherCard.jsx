@@ -1,4 +1,7 @@
-import { weatherOptions, defaultWeatherOptions } from "../../utils/constants.js";
+import {
+  weatherOptions,
+  defaultWeatherOptions,
+} from "../../utils/constants.js";
 
 import "./WeatherCard.css";
 
