@@ -41,7 +41,6 @@
   line-height: 20px;
   letter-spacing: 0;
   margin-bottom: 12px;
- 
 }
 
 .modal__close {
@@ -66,7 +65,8 @@
 .modal__input {
   display: block;
   width: 100%;
-  border: 1px solid #000000;
+  border: none;
+  border-bottom: 1px solid #000000;
   margin-bottom: 24px;
   margin-top: 8px;
 }
