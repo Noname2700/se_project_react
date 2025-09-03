@@ -6,10 +6,22 @@
   line-height: 24px;
   color: #000;
   background-color: white;
-  margin-top: 20px;
-  border-radius: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: 24px 32px;
+  margin-top: 0;
+  border-radius: 0 0 16px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal__content_type_image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal__content_type_image {
@@ -17,7 +29,7 @@
 }
 
 .modal__caption {
-  margin: 0 32px;
+  margin: 0;
   margin-bottom: 12px;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
@@ -27,8 +39,7 @@
 }
 
 .modal__weather {
-  margin: 0 32px;
-  margin-bottom: 32px;
+  margin: 8px 0 0 0;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -45,4 +56,19 @@
   height: 100%;
   max-width: 498px;
   border-radius: 12px;
+}
+
+.modal__delete-button {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ff4d00;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-right: 51px;
+  position: absolute;
+  top: 22px;
+  right: -27px;
 }

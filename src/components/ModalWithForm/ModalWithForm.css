@@ -53,13 +53,17 @@
   width: 498px;
   position: relative;
   background-color: white;
-  padding: 28px 28px 36px;
+  padding: 28px 32px 28px 32px;
   border-radius: 16px;
 }
 
 .modal__form {
   display: flex;
   flex-direction: column;
+}
+
+.modal__content_type_image {
+  padding: 0;
 }
 
 .modal__input {
@@ -71,13 +75,21 @@
   margin-top: 8px;
 }
 
+.modal__input_type_error {
+  border: 1px solid red;
+}
+.modal__error_visible {
+  color: red;
+  font-size: 12px;
+}
+
 .modal__radio-button {
   border: none;
   padding: 0;
   width: 173px;
 }
 
-.modal__submit {
+.modal__submit-btn {
   width: 124px;
   height: 36px;
   border-radius: 5px;
@@ -88,12 +100,14 @@
   background-color: #000000;
 }
 
-.modal__submit:hover {
+.modal__submit-btn:hover {
   background-color: #00000080;
 }
 
-.modal__submit:disabled {
+.modal__submit-btn_disabled,
+.modal__submit-btn_disabled:disabled {
   background-color: #00000080;
+  cursor: not-allowed;
 }
 
 .modal__label_type_radio {
@@ -122,3 +136,4 @@
   background-color: transparent;
   background-image: url("/src/assets/closebutton.svg");
 }
+

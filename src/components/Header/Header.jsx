@@ -1,6 +1,11 @@
+import React, { useState } from "react";
+
 import "./Header.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
+import { Link } from "react-router-dom";
+
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleDateString("default", {
@@ -10,22 +15,36 @@ function Header({ handleAddClick, weatherData }) {
     weekday: "long",
   });
 
+  const [checked, setChecked] = useState(false);
+
+  const handleToggleChange = () => {
+    setChecked(!checked);
+  };
+
   return (
     <header className="header">
       <img src={logo} alt="Logo" className="header__logo" />
       <p className="header__date-and-location">
         {currentDate}, {weatherData.city}
       </p>
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add clothes
-      </button>
+      <div className="header__actions">
+        <ToggleSwitch onChange={handleToggleChange} value={checked} />
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          + Add clothes
+        </button>
+      </div>
+
       <div className="header__user-container">
-        <p className="header__username">Yohan Encarnacion</p>
-        <img src={avatar} alt="User Avatar" className="header__user-avatar" />
+        <Link to="/profile" className="header__user-link">
+          <p className="header__username">Yohan Encarnacion</p>
+        </Link>
+        <Link to="/main">
+          <img src={avatar} alt="User Avatar" className="header__user-avatar" />
+        </Link>
       </div>
     </header>
   );

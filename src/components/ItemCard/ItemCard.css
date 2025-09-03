@@ -1,8 +1,8 @@
 .card {
-  width: 323px;
   position: relative;
-  display: flex;
-  justify-content: center;
+  width: 325px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .cards {
@@ -12,6 +12,8 @@
 .card__name {
   position: absolute;
   top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 74px;
   height: 24px;
   display: flex;
@@ -29,6 +31,10 @@
 
 .card__image {
   width: 100%;
+  
   border-radius: 16px;
   border: 1px solid #0000004d;
+
 }
+
+
