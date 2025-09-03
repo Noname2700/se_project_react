@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { getWeather } from "../../utils/weatherApi";
 import { filterWeatherData } from "../../utils/weatherApi";
 import Header from "../Header/Header";
-import MenuButton from "../HeaderButton/HeaderButton.jsx";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal.jsx";
@@ -102,86 +100,79 @@ function App() {
   };
 
   return (
-    <>
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <div className="page">
-          <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-            <MenuButton
-              username="Yohan Encarnacion"
-              onAddClick={handleAddClick}
-              onToggleChange={handleToggleSwitchChange}
-              checked={currentTemperatureUnit === "C"}
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <div className="page">
+        <div className="page__content">
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+      
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleDeleteItem={handleCardDelete}
+                />
+              }
             />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleDeleteItem={handleCardDelete}
-                  />
-                }
-              />
-              <Route
-                path="/main"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleDeleteItem={handleCardDelete}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleAddClick={handleAddClick}
-                  />
-                }
-              />
-            </Routes>
-          </div>
-
-          <AddItemModal
-            activeModal={activeModal}
-            handleCloseClick={closeActiveModal}
-            isOpen={activeModal === "add-garment"}
-            onClose={closeActiveModal}
-            onAddItemModalSubmit={handleAddItemModalSubmit}
-          />
-
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            handleCloseClick={closeActiveModal}
-            openConfirmationModal={openConfirmationModal}
-          />
-
-          {isConfirmOpen && (
-            <DeleteConfirmationModal
-              isOpen={isConfirmOpen}
-              onClose={closeActiveModal}
-              onConfirm={() => {
-                handleCardDelete(selectedCard);
-                setIsConfirmOpen(false);
-                setSelectedCard(null);
-              }}
-              handleCloseClick={closeActiveModal}
+            <Route
+              path="/main"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleDeleteItem={handleCardDelete}
+                />
+              }
             />
-          )}
-          <Footer />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
+          </Routes>
         </div>
-      </CurrentTemperatureUnitContext.Provider>
-    </>
+
+        <AddItemModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          isOpen={activeModal === "add-garment"}
+          onClose={closeActiveModal}
+          onAddItemModalSubmit={handleAddItemModalSubmit}
+        />
+
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          handleCloseClick={closeActiveModal}
+          openConfirmationModal={openConfirmationModal}
+        />
+
+        {isConfirmOpen && (
+          <DeleteConfirmationModal
+            isOpen={isConfirmOpen}
+            onClose={closeActiveModal}
+            onConfirm={() => {
+              handleCardDelete(selectedCard);
+              setIsConfirmOpen(false);
+              setSelectedCard(null);
+            }}
+            handleCloseClick={closeActiveModal}
+          />
+        )}
+        <Footer />
+      </div>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 

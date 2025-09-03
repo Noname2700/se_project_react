@@ -39,10 +39,8 @@ function AddItemModal({ isOpen, onClose, onAddItemModalSubmit }) {
     setError(newError);
     if (newError.name || newError.imageUrl || newError.weather) return;
     onAddItemModalSubmit({ name, imageUrl, weather });
-    setName("");
-    setImageUrl("");
-    setWeather("");
   };
+  
 
   return (
     <ModalWithForm
