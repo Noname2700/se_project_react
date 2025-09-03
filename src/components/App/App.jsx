@@ -11,7 +11,7 @@ import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer";
-import CurrentTemperatureUnitContext from "../Context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../utils/CurrentTemperatureUnitContext.jsx";
 import AddItemModal from "../AddItemModal/AdditemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 import { deleteItems, getItems, postItems } from "../../utils/api.js";
@@ -78,18 +78,18 @@ function App() {
   }, []);
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-  postItems({ name, imageUrl, weather })
-    .then(() => {
-      return getItems();
-    })
-    .then((data) => {
-      setClothingItems(data); 
-      closeActiveModal();
-    })
-    .catch((error) => {
-      console.error("Error adding item:", error);
-    });
-};
+    postItems({ name, imageUrl, weather })
+      .then(() => {
+        return getItems();
+      })
+      .then((data) => {
+        setClothingItems(data);
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+  };
   /*
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
   postItems({ name, imageUrl, weather })
