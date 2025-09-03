@@ -16,7 +16,7 @@ The user will have three choices to choose from whether it will be hot, warm, or
 - After that, we create the profile component along with a sidebar. We then implement the Routes by installing them in our project and configuring them. Next, we implement the link, which we can access by installing the routes in our project.
 
 - Then we created a clothing item component with a controlled input. We handled the form submission to update, along with the ability to delete whichever item the user would like to delete from our page. 
-Finally, we added the finishing touches, including a mock server.
+Finally, we added the finishing touches, including a mock server that will allow us run a mock database allowing the users to add and remove cards in the app according to thier prefrence.
 
 ## Technology
 
