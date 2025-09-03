@@ -90,20 +90,7 @@ function App() {
         console.error("Error adding item:", error);
       });
   };
-  /*
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-  postItems({ name, imageUrl, weather })
-    .then((newItem) => {
-      if (!newItem._id) {
-        newItem._id = Date.now().toString(); 
-      }
-      setClothingItems((prevItems) => [newItem, ...prevItems]);
-      closeActiveModal();
-    })
-    .catch((error) => {
-      console.error("Error adding item:", error);
-    });
-};*/
+
   const handleCardDelete = (card) => {
     deleteItems(card).then(() => {
       setClothingItems((prevItems) =>
