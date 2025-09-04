@@ -72,17 +72,12 @@ function App() {
       .catch((error) => {
         console.error("Error fetching items:", error);
       });
-    closeActiveModal();
   }, []);
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     postItems({ name, imageUrl, weather })
-      .then(() => {
-        return getItems();
-      })
-      .then((data) => {
-        setClothingItems(data);
-        closeActiveModal();
+      .then((newItem) => {
+        setClothingItems((prevItems) => [...prevItems, newItem]);
       })
       .catch((error) => {
         console.error("Error adding item:", error);
@@ -90,14 +85,32 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    deleteItems(card).then(() => {
-      setClothingItems((prevItems) =>
-        prevItems.filter((item) => item._id !== card._id)
-      );
-      setIsConfirmOpen(false);
-      setSelectedCard(null);
-    });
+    deleteItems(card)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== card._id)
+        );
+        setIsConfirmOpen(false);
+        setSelectedCard(null);
+      })
+      .catch((error) => {
+        console.error("Error deleting item:", error);
+      });
   };
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -106,7 +119,7 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-      
+
           <Routes>
             <Route
               path="/"

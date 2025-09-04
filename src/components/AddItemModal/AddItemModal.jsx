@@ -49,7 +49,7 @@ function AddItemModal({ isOpen, onClose, onAddItemModalSubmit }) {
       isOpen={isOpen}
       handleCloseClick={onClose}
       onSubmit={handleSubmit}
-      isFormvalid={isFormValid}
+      isFormValid={isFormValid}
     >
       <label htmlFor="name" className="modal__label">
         Name

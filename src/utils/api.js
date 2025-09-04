@@ -1,9 +1,11 @@
 const baseUrl = "http://localhost:3001";
 
+ export function checkResponse(res) {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+}
+
 function getItems() {
-  return fetch(`${baseUrl}/items`, { cache: "no-store" }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`, { cache: "no-store" }).then(checkResponse);
 }
 
 function postItems({ name, imageUrl, weather }) {
@@ -21,12 +23,7 @@ function postItems({ name, imageUrl, weather }) {
       weather,
     }),
   })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-      }
-      return res.json();
-    })
+    .then(checkResponse)
     .catch((error) => {
       console.error("Error posting item:", error);
       throw error;
@@ -40,12 +37,8 @@ function deleteItems(item) {
   return fetch(`${baseUrl}/items/${item._id}`, {
     method: "DELETE",
   })
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status}`);
-      }
-      return item._id;
-    })
+    .then(checkResponse)
+    .then(() => item._id)
     .catch((error) => {
       console.error("Error deleting item:", error);
       throw error;

@@ -5,7 +5,7 @@ function Footer() {
     <footer className="footer">
       <p className="footer__text">Developed by Yohan Encarnacion</p>
       <p className="footer__copyright">
-        &copy; 2025 
+        {`© ${new Date().getFullYear()}`}
       </p>
     </footer>
   );
