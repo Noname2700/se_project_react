@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "_id": 0,
+      "_id": 999,
       "name": "Beanie",
       "weather": "cold",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"

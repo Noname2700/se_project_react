@@ -77,7 +77,8 @@ function App() {
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     postItems({ name, imageUrl, weather })
       .then((newItem) => {
-        setClothingItems((prevItems) => [...prevItems, newItem]);
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Error adding item:", error);
@@ -99,18 +100,20 @@ function App() {
   };
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        closeActiveModal();
-      }
-    };
+  if (!activeModal) return;
 
-    document.addEventListener("keydown", handleEscape);
+  const handleEscape = (e) => {
+    if (e.key === "Escape") {
+      closeActiveModal();
+    }
+  };
 
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, []);
+  document.addEventListener("keydown", handleEscape);
+
+  return () => {
+    document.removeEventListener("keydown", handleEscape);
+  };
+}, [activeModal]); 
 
   return (
     <CurrentTemperatureUnitContext.Provider
