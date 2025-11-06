@@ -1,5 +1,6 @@
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./Login.css";
 
 const LoginModal = ({ isOpen, onClose, handleLogin, switchToRegister }) => {
   const { values, handleChange, resetForm } = useForm({
