@@ -35,3 +35,30 @@
   border-radius: 16px;
   border: 1px solid #0000004d;
 }
+
+.card__like-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #b6bcbf;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.card__like-button:hover {
+  color: #000000;
+}
+
+.card__like-button_liked {
+  color: #ff0000;
+}
+
+.card__like-button_liked:hover {
+  color: #ff0000;
+}

@@ -5,7 +5,13 @@ import logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 
-function Header({ handleAddClick, weatherData, isLoggedIn }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  isLoggedIn,
+  handleLoginClick,
+  handleRegisterClick,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   const currentDate = new Date().toLocaleDateString("default", {
@@ -79,12 +85,20 @@ function Header({ handleAddClick, weatherData, isLoggedIn }) {
         </div>
       ) : (
         <div className="header__auth-container">
-          <Link to="/register" className="header__register-link">
+          <button
+            onClick={handleRegisterClick}
+            className="header__register-link"
+            type="button"
+          >
             Sign Up
-          </Link>
-          <Link to="/login" className="header__login-link">
+          </button>
+          <button
+            onClick={handleLoginClick}
+            className="header__login-link"
+            type="button"
+          >
             Log In
-          </Link>
+          </button>
         </div>
       )}
     </header>

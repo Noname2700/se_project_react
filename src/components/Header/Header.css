@@ -75,18 +75,21 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: background-color 0.2s ease;
+  border: none;
 }
 
 .header__register-link:hover,
 .header__login-link:hover {
   background-color: #f0f0f0;
+  cursor: pointer;
 }
 
 .header__login-link {
   border: 1px solid #000000;
+  border: none;
 }
 
-/* Avatar placeholder styles */
+
 .header__avatar-placeholder {
   width: 40px;
   height: 40px;

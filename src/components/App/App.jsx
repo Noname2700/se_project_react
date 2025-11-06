@@ -23,8 +23,8 @@ import {
 import { checkToken, editProfile, signup, signin } from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoutes/ProtectedRoute.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
-import Register from "../RegisterModal/Register.jsx";
-import Login from "../LoginModal/Login.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -46,6 +46,7 @@ function App() {
     avatar: "",
   });
   const currentUser = {
+    _id: userData._id,
     email: userData.email,
     name: userData.name,
     avatar: userData.avatar,
@@ -60,6 +61,22 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
+  };
+
+  const handleRegisterClick = () => {
+    setActiveModal("register");
+  };
+
+  const handleSwitchToLogin = () => {
+    setActiveModal("login");
+  };
+
+  const handleSwitchToRegister = () => {
+    setActiveModal("register");
   };
 
   const openConfirmationModal = (card) => {
@@ -127,6 +144,7 @@ function App() {
         .then((res) => {
           setIsLoggedIn(true);
           setUserData({
+            _id: res._id || "",
             email: res.email || "",
             name: res.name || "",
             avatar: res.avatar || "",
@@ -150,12 +168,12 @@ function App() {
     if (password === confirmPassword) {
       signup({ name: username, email, password, avatar: "" })
         .then(() => {
-          // Auto-login after successful registration
           return signin({ email, password });
         })
         .then((res) => {
           localStorage.setItem("jwt", res.token);
           setUserData({
+            _id: res.user?._id || "",
             email: res.user?.email || email,
             name: res.user?.name || username,
             avatar: res.user?.avatar || "",
@@ -181,6 +199,7 @@ function App() {
         localStorage.setItem("jwt", res.token);
         if (res.token) {
           setUserData({
+            _id: res.user?._id || "",
             email: res.user?.email || email,
             name: res.user?.name || "",
             avatar: res.user?.avatar || "",
@@ -273,38 +292,13 @@ function App() {
               handleAddClick={handleAddClick}
               weatherData={weatherData}
               isLoggedIn={isLoggedIn}
+              handleLoginClick={handleLoginClick}
+              handleRegisterClick={handleRegisterClick}
             />
 
             <Routes>
               <Route
                 path="/"
-                element={
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleDeleteItem={handleCardDelete}
-                    handleCardLike={handleCardLike}
-                    isLoggedIn={isLoggedIn}
-                  />
-                }
-              />
-              <Route
-                path="/register"
-                element={<Register handleRegistration={handleRegistration} />}
-              />
-
-              <Route
-                path="/login"
-                element={
-                  <Login
-                    handleLogin={handleLogin}
-                    handleSignOut={handleSignOut}
-                  />
-                }
-              />
-              <Route
-                path="/main"
                 element={
                   <Main
                     weatherData={weatherData}
@@ -369,6 +363,20 @@ function App() {
               }}
             />
           )}
+
+          <RegisterModal
+            isOpen={activeModal === "register"}
+            onClose={closeActiveModal}
+            handleRegistration={handleRegistration}
+            switchToLogin={handleSwitchToLogin}
+          />
+
+          <LoginModal
+            isOpen={activeModal === "login"}
+            onClose={closeActiveModal}
+            handleLogin={handleLogin}
+            switchToRegister={handleSwitchToRegister}
+          />
 
           <Footer />
         </div>

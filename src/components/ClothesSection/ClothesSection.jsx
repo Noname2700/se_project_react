@@ -1,11 +1,10 @@
-import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ClothesSection({
-  clothingItems = defaultClothingItems,
+  clothingItems,
   handleCardClick,
   handleAddClick,
   isOwn = true,
@@ -15,15 +14,12 @@ function ClothesSection({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  // Determine which user's items to show (profile owner or current user)
-  const targetUser = profileUser || currentUser;
-
   const userClothingItems = clothingItems.filter((item) => {
     if (item.owner) {
-      return item.owner === targetUser?._id;
+      return item.owner === currentUser?._id;
     }
     // For items without owner (legacy items), only show on current user's profile
-    return isOwn && targetUser?._id === currentUser?._id;
+    return isOwn && currentUser?._id;
   });
 
   return (
@@ -33,7 +29,7 @@ function ClothesSection({
           {isOwn
             ? "Your items"
             : `${
-                targetUser?.name || targetUser?.email?.split("@")[0] || "User"
+                currentUser?.name || currentUser?.email?.split("@")[0] || "User"
               }'s items`}
         </p>
         {isOwn && (

@@ -137,3 +137,20 @@
   background-image: url("/src/assets/closebutton.svg");
 }
 
+.modal__link-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.modal__link-btn:hover {
+  color: #00000080;
+}
