@@ -57,3 +57,60 @@
   margin-left: auto;
 }
 
+.header__auth-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__register-link,
+.header__login-link {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: #000000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.header__register-link:hover,
+.header__login-link:hover {
+  background-color: #f0f0f0;
+}
+
+.header__login-link {
+  border: 1px solid #000000;
+}
+
+/* Avatar placeholder styles */
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.header__avatar-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.header__user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}

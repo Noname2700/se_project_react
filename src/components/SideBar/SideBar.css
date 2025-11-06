@@ -1,16 +1,59 @@
 .sidebar {
   display: flex;
+  flex-direction: column;
   gap: 16px;
   margin-right: 116px;
-  height: 56px;
+  min-height: 56px;
   align-items: center;
+  text-align: center;
 }
+
+.sidebar__user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar__avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
 .sidebar__username {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
   letter-spacing: 0;
-  display: flex;
-  
+  margin: 0;
+}
+
+.sidebar__edit-button {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #000000;
+  background: transparent;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar__edit-button:hover {
+  background-color: #f0f0f0;
 }

@@ -1,30 +1,74 @@
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ClothesSection({
   clothingItems = defaultClothingItems,
   handleCardClick,
   handleAddClick,
+  isOwn = true,
+  profileUser = null, // The user whose profile we're viewing
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  // Determine which user's items to show (profile owner or current user)
+  const targetUser = profileUser || currentUser;
+
+  const userClothingItems = clothingItems.filter((item) => {
+    if (item.owner) {
+      return item.owner === targetUser?.email || item.owner === targetUser?._id;
+    }
+    // For items without owner (legacy items), only show on current user's profile
+    return isOwn && targetUser?.email === currentUser?.email;
+  });
+
   return (
     <div className="clothes-section">
       <div className="clothes__header">
-        <p className="clothes__text">Your items</p>
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="clothes__addbutton"
-        >
-          + Add New
-        </button>
+        <p className="clothes__text">
+          {isOwn
+            ? "Your items"
+            : `${
+                targetUser?.name || targetUser?.email?.split("@")[0] || "User"
+              }'s items`}
+        </p>
+        {isOwn && (
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="clothes__addbutton"
+          >
+            + Add New
+          </button>
+        )}
       </div>
       <ul className="clothes-section__items">
-        {clothingItems.map((item) => (
-          <li key={item._id} className="card">
-            <ItemCard item={item} onCardClick={handleCardClick} />
+        {userClothingItems.length > 0 ? (
+          userClothingItems.map((item) => (
+            <li key={item._id} className="card">
+              <ItemCard
+                item={item}
+                onCardClick={handleCardClick}
+                isOwn={
+                  isOwn &&
+                  (item.owner === currentUser?.email ||
+                    item.owner === currentUser?._id ||
+                    !item.owner)
+                }
+              />
+            </li>
+          ))
+        ) : (
+          <li className="clothes-section__no-items">
+            <p className="clothes-section__no-items-text">
+              {isOwn
+                ? "You haven't added any clothing items yet."
+                : "This user hasn't added any items."}
+            </p>
           </li>
-        ))}
+        )}
       </ul>
     </div>
   );

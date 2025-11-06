@@ -1,0 +1,12 @@
+
+.modal__label {
+  color: #000000;
+}
+
+.modal__input {
+  color: #000000;
+}
+
+.modal__input::placeholder {
+  color: #666666;
+}
