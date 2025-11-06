@@ -1,3 +1,5 @@
+import { checkResponse } from "./api.js";
+
 export const authorize = (identifier, password) => {
   return fetch("http://localhost:3001/auth/local", {
     method: "POST",
@@ -6,9 +8,7 @@ export const authorize = (identifier, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ identifier, password }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
@@ -19,40 +19,34 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 };
 
 export const signup = ({ name, avatar, email, password }) => {
-  return fetch("http://localhost:3001/auth/local/signup", {
+  return fetch("http://localhost:3001/signup", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 };
 
 export const signin = ({ email, password }) => {
-  return fetch("http://localhost:3001/auth/local/signin", {
+  return fetch("http://localhost:3001/signin", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 };
 
 export const editProfile = ({ name, avatar, email }) => {
   const token = localStorage.getItem("jwt");
-  return fetch("http://localhost:3001/users/me",{
+  return fetch("http://localhost:3001/users/me", {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -60,9 +54,7 @@ export const editProfile = ({ name, avatar, email }) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar, email }),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(checkResponse);
 };
 
 export default { signup, signin, authorize, checkToken, editProfile };

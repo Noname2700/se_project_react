@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import { coordinates, apiKey } from "../../utils/constants.js";
 import { getWeather } from "../../utils/weatherApi";
 import { filterWeatherData } from "../../utils/weatherApi";
 import Header from "../Header/Header";
@@ -10,11 +10,11 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Footer from "../Footer/Footer";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
-import AddItemModal from "../AddItemModal/AdditemModal.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal.jsx";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import {
-  deleteItems,
+  deleteItem,
   getItems,
   postItems,
   addCardLike,
@@ -100,7 +100,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -162,7 +162,7 @@ function App() {
           });
           setIsLoggedIn(true);
           closeActiveModal();
-          navigate("/profile");
+          navigate("/");
         })
         .catch((error) => {
           console.error("Registration or login failed:", error);
@@ -187,7 +187,7 @@ function App() {
           });
           setIsLoggedIn(true);
           closeActiveModal();
-          navigate("/profile");
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -226,7 +226,7 @@ function App() {
   };
 
   const handleCardDelete = (card) => {
-    deleteItems(card)
+    deleteItem(card)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== card._id)
@@ -243,7 +243,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setUserData({ email: "", name: "", avatar: "" });
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -284,6 +284,8 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleDeleteItem={handleCardDelete}
+                    handleCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -310,6 +312,7 @@ function App() {
                     clothingItems={clothingItems}
                     handleDeleteItem={handleCardDelete}
                     handleCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -324,6 +327,7 @@ function App() {
                       onEditProfile={handleEditProfileClick}
                       handleSignOut={handleSignOut}
                       isLoggedIn={isLoggedIn}
+                      handleCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
@@ -357,6 +361,7 @@ function App() {
             <DeleteConfirmationModal
               isOpen={isConfirmOpen}
               onClose={closeActiveModal}
+              handleCloseClick={closeActiveModal}
               onConfirm={() => {
                 handleCardDelete(selectedCard);
                 setIsConfirmOpen(false);

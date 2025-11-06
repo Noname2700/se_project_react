@@ -1,7 +1,6 @@
 .modal__footer {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
   color: #000;
@@ -35,7 +34,6 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  font-style: bold;
 }
 
 .modal__weather {
@@ -44,7 +42,6 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  font-style: bold;
 }
 
 .modal__image {

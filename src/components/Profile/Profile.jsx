@@ -10,6 +10,7 @@ function Profile({
   onEditProfile,
   handleSignOut,
   isLoggedIn,
+  handleCardLike,
 }) {
   const isOwn = profileUser === null;
 
@@ -30,6 +31,8 @@ function Profile({
           handleAddClick={handleAddClick}
           isOwn={isOwn}
           profileUser={profileUser}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>

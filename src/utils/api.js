@@ -24,15 +24,10 @@ function postItems({ name, imageUrl, weather }) {
       imageUrl,
       weather,
     }),
-  })
-    .then(checkResponse)
-    .catch((error) => {
-      console.error("Error posting item:", error);
-      throw error;
-    });
+  }).then(checkResponse);
 }
 
-function deleteItems(item) {
+function deleteItem(item) {
   if (!item || !item._id) {
     return Promise.reject("Invalid item for deletion");
   }
@@ -44,11 +39,7 @@ function deleteItems(item) {
     },
   })
     .then(checkResponse)
-    .then(() => item._id)
-    .catch((error) => {
-      console.error("Error deleting item:", error);
-      throw error;
-    });
+    .then(() => item._id);
 }
 
 function addCardLike(id, token) {
@@ -71,4 +62,4 @@ function removeCardLike(id, token) {
   }).then(checkResponse);
 }
 
-export { getItems, postItems, deleteItems, addCardLike, removeCardLike };
+export { getItems, postItems, deleteItem, addCardLike, removeCardLike };

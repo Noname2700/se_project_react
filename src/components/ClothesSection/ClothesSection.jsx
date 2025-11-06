@@ -10,6 +10,8 @@ function ClothesSection({
   handleAddClick,
   isOwn = true,
   profileUser = null, // The user whose profile we're viewing
+  handleCardLike,
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -18,10 +20,10 @@ function ClothesSection({
 
   const userClothingItems = clothingItems.filter((item) => {
     if (item.owner) {
-      return item.owner === targetUser?.email || item.owner === targetUser?._id;
+      return item.owner === targetUser?._id;
     }
     // For items without owner (legacy items), only show on current user's profile
-    return isOwn && targetUser?.email === currentUser?.email;
+    return isOwn && targetUser?._id === currentUser?._id;
   });
 
   return (
@@ -51,11 +53,10 @@ function ClothesSection({
               <ItemCard
                 item={item}
                 onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                isLoggedIn={isLoggedIn}
                 isOwn={
-                  isOwn &&
-                  (item.owner === currentUser?.email ||
-                    item.owner === currentUser?._id ||
-                    !item.owner)
+                  isOwn && (item.owner === currentUser?._id || !item.owner)
                 }
               />
             </li>

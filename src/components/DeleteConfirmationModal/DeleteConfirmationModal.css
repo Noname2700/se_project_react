@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px; 
+  padding: 60px;
 }
 
 .modal__actions {
@@ -16,7 +16,6 @@
 .modal__title {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
   color: #000000;
@@ -27,7 +26,6 @@
 .modal__confirm-button {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
   border: none;
@@ -43,7 +41,6 @@
 .modal__cancel-button {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 20px;
   line-height: 24px;
   color: #000000;

@@ -1,6 +1,5 @@
 import "./SideBar.css";
 import { useContext } from "react";
-import avatar from "../../assets/avatar.svg";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SideBar({ onEditProfile, isOwn = true, handleSignOut }) {

@@ -27,7 +27,6 @@
   transition: all 0.3s ease;
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
-  font-style: bold;
   font-size: 14px;
   line-height: 100%;
 }
@@ -53,4 +52,3 @@
 .toggle-switch__text_color_white {
   color: #fff;
 }
-
