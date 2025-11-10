@@ -198,16 +198,27 @@ function App() {
       .then((res) => {
         localStorage.setItem("jwt", res.token);
         if (res.token) {
-          setUserData({
-            _id: res.user?._id || "",
-            email: res.user?.email || email,
-            name: res.user?.name || "",
-            avatar: res.user?.avatar || "",
-          });
           setIsLoggedIn(true);
           closeActiveModal();
           navigate("/");
         }
+        const token = localStorage.getItem("jwt");
+        if (token) {
+          checkToken(token).then((res) => {
+            setUserData({
+              _id: res._id || "",
+              email: res.email || email,
+              name: res.name || "",
+              avatar: res.avatar || "",
+            });
+            console.log("User authenticated with existing token");
+          });
+        }
+      })
+      .catch((error) => {
+        localStorage.removeItem("jwt");
+        setIsLoggedIn(false);
+        console.error("Token validation failed:", error);
       })
       .catch((error) => {
         console.error("Login failed:", error);
@@ -227,21 +238,17 @@ function App() {
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    !isLiked
-      ? addCardLike(id, token)
-          .then((updateCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updateCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : removeCardLike(id, token)
-          .then((updateCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updateCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+    const likeAction = isLiked ? removeCardLike : addCardLike;
+
+    likeAction(id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((item) => (item._id === id ? updatedCard : item))
+        );
+      })
+      .catch((err) => {
+        console.error("Error updating like status:", err);
+      });
   };
 
   const handleCardDelete = (card) => {

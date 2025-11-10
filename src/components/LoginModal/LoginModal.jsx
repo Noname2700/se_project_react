@@ -1,22 +1,26 @@
 import { useForm } from "../../hooks/useForm";
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./Login.css";
 
 const LoginModal = ({ isOpen, onClose, handleLogin, switchToRegister }) => {
-  const { values, handleChange, resetForm } = useForm({
+  const { values, handleChange, resetForm, isValid } = useForm({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (handleLogin) {
       handleLogin(values);
-      resetForm();
     }
   };
-
-  const isFormValid = values.email && values.password;
 
   return (
     <ModalWithForm
@@ -25,14 +29,14 @@ const LoginModal = ({ isOpen, onClose, handleLogin, switchToRegister }) => {
       isOpen={isOpen}
       handleCloseClick={onClose}
       onSubmit={handleSubmit}
-      isFormValid={isFormValid}
+      isFormValid={isValid}
+      hideSubmitButton={true}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email*
         <input
           type="email"
           name="email"
-          id="email"
           value={values.email || ""}
           onChange={handleChange}
           placeholder="Email"
@@ -41,12 +45,11 @@ const LoginModal = ({ isOpen, onClose, handleLogin, switchToRegister }) => {
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password*
         <input
           type="password"
           name="password"
-          id="password"
           value={values.password || ""}
           onChange={handleChange}
           placeholder="Password"
@@ -55,13 +58,24 @@ const LoginModal = ({ isOpen, onClose, handleLogin, switchToRegister }) => {
         />
       </label>
 
-      <button
-        type="button"
-        className="modal__link-btn"
-        onClick={switchToRegister}
-      >
-        or Sign Up
-      </button>
+      <div className="modal__button-row">
+        <button
+          type="button"
+          className="modal__link-btn"
+          onClick={switchToRegister}
+        >
+          Sign Up
+        </button>
+        <button
+          type="submit"
+          className={`modal__submit-btn ${
+            !isValid ? "modal__submit-btn_disabled" : ""
+          }`}
+          disabled={!isValid}
+        >
+          Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

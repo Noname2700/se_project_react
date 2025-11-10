@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./ItemModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
+import useModalClose from "../../hooks/usModalClose.js";
 
 function ItemModal({
   activeModal,
@@ -9,6 +10,9 @@ function ItemModal({
   openConfirmationModal,
 }) {
   const currentUser = useContext(CurrentUserContext);
+
+  const isOpen = activeModal === "preview";
+  useModalClose(isOpen, handleCloseClick);
 
   if (!card) return null;
 
@@ -33,7 +37,7 @@ function ItemModal({
   };
 
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_image">
         <button
           onClick={handleCloseClick}

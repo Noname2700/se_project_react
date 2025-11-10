@@ -1,52 +1,61 @@
 import { checkResponse } from "./api.js";
 
+function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
 export const authorize = (identifier, password) => {
-  return fetch("http://localhost:3001/auth/local", {
+  const baseUrl = "http://localhost:3001/auth/local";
+  return request(baseUrl, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ identifier, password }),
-  }).then(checkResponse);
+  });
 };
 
 export const checkToken = (token) => {
-  return fetch("http://localhost:3001/users/me", {
+  const baseUrl = "http://localhost:3001/users/me";
+  return request(baseUrl, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
 };
 
 export const signup = ({ name, avatar, email, password }) => {
-  return fetch("http://localhost:3001/signup", {
+  const baseUrl = "http://localhost:3001/signup";
+  return request(baseUrl, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(checkResponse);
+  });
 };
 
 export const signin = ({ email, password }) => {
-  return fetch("http://localhost:3001/signin", {
+  const baseUrl = "http://localhost:3001/signin";
+  return request(baseUrl, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(checkResponse);
+  });
 };
 
 export const editProfile = ({ name, avatar, email }) => {
   const token = localStorage.getItem("jwt");
-  return fetch("http://localhost:3001/users/me", {
+  const baseUrl = "http://localhost:3001/users/me";
+  return request(baseUrl, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
@@ -54,7 +63,7 @@ export const editProfile = ({ name, avatar, email }) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar, email }),
-  }).then(checkResponse);
+  });
 };
 
 export default { signup, signin, authorize, checkToken, editProfile };
