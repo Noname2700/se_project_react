@@ -1,12 +1,15 @@
 import { checkResponse } from "./api.js";
 
+const baseUrl = process.env.NODE_ENV === "production" 
+  ? "https://api1.jumpingcrab.com"
+  : "http://localhost:3001";
+
 function request(url, options) {
   return fetch(url, options).then(checkResponse);
 }
 
 export const authorize = (identifier, password) => {
-  const baseUrl = "http://localhost:3001/auth/local";
-  return request(baseUrl, {
+  return request(`${baseUrl}/auth/local`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -17,8 +20,7 @@ export const authorize = (identifier, password) => {
 };
 
 export const checkToken = (token) => {
-  const baseUrl = "http://localhost:3001/users/me";
-  return request(baseUrl, {
+  return request(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -29,8 +31,7 @@ export const checkToken = (token) => {
 };
 
 export const signup = ({ name, avatar, email, password }) => {
-  const baseUrl = "http://localhost:3001/signup";
-  return request(baseUrl, {
+  return request(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -41,8 +42,7 @@ export const signup = ({ name, avatar, email, password }) => {
 };
 
 export const signin = ({ email, password }) => {
-  const baseUrl = "http://localhost:3001/signin";
-  return request(baseUrl, {
+  return request(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -54,8 +54,7 @@ export const signin = ({ email, password }) => {
 
 export const editProfile = ({ name, avatar, email }) => {
   const token = localStorage.getItem("jwt");
-  const baseUrl = "http://localhost:3001/users/me";
-  return request(baseUrl, {
+  return request(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       Accept: "application/json",
