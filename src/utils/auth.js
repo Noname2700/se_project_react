@@ -1,7 +1,7 @@
 import { checkResponse } from "./api.js";
 
 const baseUrl = process.env.NODE_ENV === "production" 
-  ? "https://api1.jumpingcrab.com"
+  ? "https://www.api.jumpingcrab.com"
   : "http://localhost:3001";
 
 function request(url, options) {
