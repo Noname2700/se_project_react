@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
 "predeploy": "npm run build",
-"deploy": "npm run build && scp -r ./dist/* breezo228@domain.jumpingcrab.com:/home/breezo228/frontend",
+"deploy": "npm run build && scp -r ./dist/* breezo228@domain1.jumpingcrab.com:/home/breezo228/frontend",
     "server": "node backend/server.js",
     "dev:backend": "node backend/server.js",
     "start:both": "concurrently \"npm run server\" \"npm run dev\""
