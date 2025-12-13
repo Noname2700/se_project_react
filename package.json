@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://domain.jumpingcrab.com ",
+  "homepage": "https://domain1.jumpingcrab.com ",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
